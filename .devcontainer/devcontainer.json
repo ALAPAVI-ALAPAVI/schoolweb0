@@ -4,11 +4,6 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
-    },
-    "ghcr.io/devcontainers/features/postgres:1": {
-      "version": "16",
-      "password": "postgres",
-      "database": "school_db"
     }
   },
   "forwardPorts": [3000, 5432],
@@ -19,11 +14,10 @@
     },
     "5432": {
       "label": "PostgreSQL",
-      "onAutoForward": "silent",
-      "requireLocalPort": true
+      "onAutoForward": "silent"
     }
   },
-  "postCreateCommand": "npm install && npx prisma generate",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib && sudo service postgresql start && sudo -u postgres psql -c \"ALTER USER postgres PASSWORD 'postgres';\" && sudo -u postgres psql -c \"CREATE DATABASE school_db;\" && npm install && npx prisma generate",
   "customizations": {
     "vscode": {
       "extensions": [
