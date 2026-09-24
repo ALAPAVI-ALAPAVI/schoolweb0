@@ -17,7 +17,7 @@
       "onAutoForward": "silent"
     }
   },
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib && sudo service postgresql start && sudo -u postgres psql -c \"ALTER USER postgres PASSWORD 'postgres';\" && sudo -u postgres psql -c \"CREATE DATABASE school_db;\" && npm install && npx prisma generate",
+  "postCreateCommand": "sudo mv /etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list.disabled 2>/dev/null || true; sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib && sudo service postgresql start && sleep 3 && sudo -u postgres psql -c \"ALTER USER postgres PASSWORD 'postgres';\" && sudo -u postgres psql -c \"CREATE DATABASE school_db;\" && npm install && npx prisma generate",
   "customizations": {
     "vscode": {
       "extensions": [
